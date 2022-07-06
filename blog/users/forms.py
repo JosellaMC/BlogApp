@@ -1,6 +1,8 @@
+from cProfile import Profile
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import Profile
 
 
 class UserRegisterForm(UserCreationForm):   #here we creating a new form that inherits from the django
@@ -9,3 +11,15 @@ class UserRegisterForm(UserCreationForm):   #here we creating a new form that in
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image']
